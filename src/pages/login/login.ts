@@ -1,5 +1,5 @@
 import { AuthDataService } from './../../providers/authdata.service';
-import { NavController, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
@@ -19,14 +19,18 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public authDataService: AuthDataService,
-    public modalCtrl: ModalController)
-  { }
+    public modalCtrl: ModalController,
+    public menu: MenuController,)
+  { 
+    this.menu.enable(false);
+  }
 
   Login() {
     this.ShowLoading()
 
     this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
       this.loader.dismiss();
+      this.menu.enable(true);
       this.navCtrl.setRoot(TabsPage);
     }).catch((error) => {
       this.ShowError(error);
