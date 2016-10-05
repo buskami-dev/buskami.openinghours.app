@@ -1,19 +1,33 @@
 This is an Ionic Framework V2 RC0 + Firebase 3 
 
-Make sure you have ionic, typescript and cordova installed
+-First uninstall NodeJs 4.*
+-Install NodeJS 6.7
+-Check if the version has been correctly installed
+$ node -v
+
+Then uninstall ionic en install again
+$ npm uninstall -g ionic
+$ npm cache clean
+$ npm install -g ionic 
 
 $ ionic info
+
+
+Make sure you have typescript and cordova installed
+$ cordova -v
 $ tsc -v
 
-$ npm install -g ionic cordova typescript
+$ npm install -g cordova typescript
 
 
 Open your terminal (you should already be in the project folder) and install the packages in this order:
 
+run first thing:
+$ npm install
 $ npm install @types/request@0.0.30 --save-dev --save-exact
 $ npm install firebase angularfire2 --save
 
-Then you’ll need to modify your rollup.config.js to include Firebase and AF2 settings. the file is located at:
+RCO is not working with firebase so you need to modify your rollup.config.js to include Firebase and AF2 settings. the file is located at:
 
 node_modules/@ionic/app-scripts/config/rollup.config.js
 
