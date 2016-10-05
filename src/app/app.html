@@ -1,6 +1,9 @@
 <ion-menu [content]="content">
     <ion-content>
         <ion-list no-lines>
+            <button ion-item (click)="OpenPage(tabspage)">
+                <ion-icon name="cart"></ion-icon> Stores
+            </button>            
             <button ion-item (click)="OpenPage(aboutPage)">
                 <ion-icon name="information-circle"></ion-icon> About
             </button>

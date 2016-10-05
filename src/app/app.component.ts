@@ -19,6 +19,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   public rootPage :any
   aboutPage: any = AboutPage;
+  tabsPage: any = TabsPage;
 
   constructor(platform: Platform, 
             af: AngularFire, 
