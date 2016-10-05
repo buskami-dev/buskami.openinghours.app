@@ -5,6 +5,7 @@ import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { TabsPage } from './../tabs/tabs';
 
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
