@@ -27,6 +27,9 @@ $ npm install
 $ npm install @types/request@0.0.30 --save-dev --save-exact
 $ npm install firebase angularfire2 --save
 
+Run following to stop memory leaks in RC0
+$ npm install --save @ionic/app-scripts@latest
+
 RCO is not working with firebase so you need to modify your rollup.config.js to include Firebase and AF2 settings. the file is located at:
 
 node_modules/@ionic/app-scripts/config/rollup.config.js

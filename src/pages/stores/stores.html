@@ -1,15 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Stores</ion-title>   
+  <ion-navbar color="primary">
+    <ion-title>
+      Stores
+    </ion-title> 
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-buttons end>
       <button ion-button icon-only (click)="GoToNewStore()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar (input)="Search($event)" placeholder="Search Store" color="primary"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-searchbar (input)="Search($event)" placeholder="Search Store"></ion-searchbar>
 <ion-list *ngIf="stores">
     <button ion-item *ngFor="let store of stores" (click)="GoToStoreDetails(store.id)">
     <ion-avatar item-left>
@@ -21,3 +28,6 @@
 </ion-list>
 </ion-content>
 
+  <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>

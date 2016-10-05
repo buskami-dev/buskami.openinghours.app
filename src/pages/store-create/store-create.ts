@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 
 @Component({
+  selector: 'page-store-create',
   templateUrl: 'store-create.html'
 })
 export class StoreCreatePage {

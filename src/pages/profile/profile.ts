@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { LoginPage } from '../login/login';
  
 @Component({
+  selector : 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {

@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 import { Store } from '../../models/store.model';
 
 @Component({
+  selector: 'page-stores',
   templateUrl: 'stores.html'
 })
 export class StoresPage {

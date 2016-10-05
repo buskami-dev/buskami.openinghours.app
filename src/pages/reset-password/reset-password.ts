@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 
 @Component({
+  selector: 'page-reset-password',
   templateUrl: 'reset-password.html'
 })
 export class ResetPasswordPage {
