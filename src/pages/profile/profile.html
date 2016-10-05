@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="LogOut()"><ion-icon name="log-out"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content class="profile">
+ <ion-list>
+  <ion-item>
+    <ion-label class="fn-label">First Name</ion-label>
+    <ion-input type="Text" [(ngModel)]="profile.firstName" name="fName" (change)="UpdateFirstName(profile.firstName)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ln-label">Last Name</ion-label>
+    <ion-input type="Text" [(ngModel)]="profile.lastName" name="LName" (change)="UpdateLastName(profile.lastName)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="dob-label">Birth Date</ion-label>
+    <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY"
+      [(ngModel)]="profile.birthdate" (ionChange)="UpdateDOB(profile.birthdate)"></ion-datetime>
+  </ion-item> 
+  <ion-item>
+    <ion-label class="gender-label">Gender</ion-label>
+    <ion-select [(ngModel)]="profile.gender" (ionChange)="UpdateGender(profile.gender)">
+      <ion-option value="f" selected="true">Female</ion-option>
+      <ion-option value="m">Male</ion-option>
+    </ion-select>    
+  </ion-item>   
+</ion-list>
+</ion-content>

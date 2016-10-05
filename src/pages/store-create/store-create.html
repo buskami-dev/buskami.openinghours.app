@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Store</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <form (ngSubmit)="storeForm.form.valid && CreateStore()" #storeForm="ngForm">
+    <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="Text" required [(ngModel)]="store.name" name="storeName"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input type="Text" required [(ngModel)]="store.phone" name="storePhone"></ion-input>
+    </ion-item>
+     <ion-item>
+        <ion-label>Url</ion-label>
+        <ion-input type="Text" required [(ngModel)]="store.url" name="storeUrl"></ion-input>
+    </ion-item>
+     <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-input type="Text" name="storeDescription"></ion-input>
+    </ion-item>    
+     <ion-item>
+        <ion-label>Map</ion-label>
+        <ion-input type="Text" name="storeMap"></ion-input>
+    </ion-item> 
+     <ion-item>
+        <ion-label>Image</ion-label>
+        <ion-input type="Text" name="storeImage"></ion-input>
+    </ion-item>
+     <ion-item>
+        <ion-label stacked>Openinghours</ion-label><br/>
+        <ion-input type="Text" name="storeMonday" placeholder="Monday"></ion-input>
+        <ion-input type="Text" name="storeTuesday" placeholder="Tuesday"></ion-input>
+        <ion-input type="Text" name="storeWednesday" placeholder="Wednesday"></ion-input>
+        <ion-input type="Text" name="storeThursday" placeholder="Thursday"></ion-input>
+        <ion-input type="Text" name="storeFriday" placeholder="Friday"></ion-input>
+        <ion-input type="Text" name="storeSaturday" placeholder="Saturday"></ion-input>
+        <ion-input type="Text" name="storeSunday" placeholder="Sunday"></ion-input>
+    </ion-item> 
+     <button ion-button type="submit" block>Save</button>                 
+  </form>
+</ion-content>
+
+
