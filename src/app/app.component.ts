@@ -17,15 +17,15 @@ declare let firebase: any;
 export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
-  public rootPage :any
+  rootPage: any = LoginPage;
+  StoresPage: any = TabsPage;
   aboutPage: any = AboutPage;
-  tabsPage: any = TabsPage;
 
   constructor(platform: Platform, 
             af: AngularFire, 
             public menu: MenuController, 
             public authDataService : AuthDataService) {
-      firebase.auth().onAuthStateChanged((user) => {
+      /*firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           this.rootPage = TabsPage;
           console.log("I'm here! TabsPage");
@@ -33,7 +33,7 @@ export class MyApp {
           this.rootPage = LoginPage;
           console.log("I'm here! LoginPage");
         }
-      });
+      });*/
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

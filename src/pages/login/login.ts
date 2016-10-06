@@ -31,6 +31,7 @@ export class LoginPage {
     this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
       this.loader.dismiss();
       this.menu.enable(true);
+      console.log('going to TabsPage');
       this.navCtrl.setRoot(TabsPage);
     }).catch((error) => {
       this.ShowError(error);
