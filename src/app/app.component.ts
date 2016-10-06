@@ -25,15 +25,17 @@ export class MyApp {
             af: AngularFire, 
             public menu: MenuController, 
             public authDataService : AuthDataService) {
-      /*firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.rootPage = TabsPage;
-          console.log("I'm here! TabsPage");
-        } else {
-          this.rootPage = LoginPage;
-          console.log("I'm here! LoginPage");
-        }
-      });*/
+    
+    let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {
+       if (!user) {
+       this.rootPage = LoginPage;
+         unsubscribe();
+       } else  {
+         this.rootPage = TabsPage;
+         unsubscribe();
+       }
+    });
+    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
