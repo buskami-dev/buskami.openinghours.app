@@ -10,3 +10,13 @@
 // automatically applied to the <body> element in the app.
 //
 // App Shared Sass variables belong in app.variables.scss.
+
+.btn{
+        padding-bottom:0;  
+        padding-top:1px;
+        padding-left:5px;
+        padding-right: 5px;
+        button{
+            background-color:#387ef5;
+        }
+    }

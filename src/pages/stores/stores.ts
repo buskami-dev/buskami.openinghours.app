@@ -2,7 +2,6 @@ import { AuthDataService } from './../../providers/authdata.service';
 import { StoreService } from './../../providers/store.service';
 import { StoreDetailsPage } from './../store-details/store-details';
 import { StoreCreatePage } from './../store-create/store-create';
-import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { NavController , MenuController} from 'ionic-angular';
 import { Store } from '../../models/store.model';
