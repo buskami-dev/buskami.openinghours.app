@@ -34,8 +34,10 @@ export class LoginPage {
     }); 
   }
 
-  Login() {
-
+  Login(event) {
+    //event.preventDefault();
+    console.log(this.loginGroup.value);
+    
     if (this.loginGroup.valid)
     {
       this.ShowLoading()
@@ -57,7 +59,6 @@ export class LoginPage {
       });
       prompt.present();
     }
-
   }
 
   LoginFacebook() {

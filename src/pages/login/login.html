@@ -2,7 +2,7 @@
   <div style="width:300px;margin:auto">
     <img src="assets/images/logo.png" style="width:300px;" />
   </div>
-  <form class="form" (ngSubmit)="Login()" #loginForm="ngForm" [formGroup]="loginGroup"> 
+  <form class="form" (ngSubmit)="Login($event)" #loginForm="ngForm" [formGroup]="loginGroup"> 
     <div padding style="padding:5px">
       <ion-item class="top-item">
         <ion-icon name="ios-mail-outline" item-left></ion-icon>
