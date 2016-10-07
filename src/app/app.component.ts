@@ -17,7 +17,7 @@ declare let firebase: any;
 export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LoginPage;
+  rootPage: any;
   pages : any[];
 
   StoresPage: any = TabsPage;
@@ -36,6 +36,7 @@ export class MyApp {
     ];          
 
     let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {
+       console.log(user);
        if (!user) {
         this.rootPage = LoginPage;
         console.log('LoginPage!!!')

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="pageStore">
   <ion-navbar color="primary">
     <ion-title>
       Stores
@@ -12,9 +12,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar color="primary">
-    <ion-searchbar (input)="Search($event)" placeholder="Search Store"></ion-searchbar>
-  </ion-toolbar>
+<ion-searchbar (input)="Search($event)" placeholder="Search Store"></ion-searchbar>
 </ion-header>
 <ion-content>
 <ion-list *ngIf="stores">

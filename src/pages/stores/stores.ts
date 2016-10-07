@@ -49,12 +49,6 @@ export class StoresPage {
   {
     this.navCtrl.push(StoreCreatePage);
   }
-
-  LogOut(){
-    this.authDataService.LogoutUser().then(() => {
-      this.navCtrl.setRoot(LoginPage);
-    });
-  }
 }
 
 

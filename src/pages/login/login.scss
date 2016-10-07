@@ -1,65 +1,67 @@
-.page-login{
-    background-color: #0a1e3f;  
-    background:url("../assets/images/login_bg.jpg");
- 
-    button{
-    height:12vw;
-    width:100%;
-    font-size:4.5vw;
-    border-radius: 1vw;
-    }
-
-    ion-item{
-        border:none;
-        padding-left:0; 
-        background-color: transparent;
-        ion-input{
-            color:#fff;
-        }
-        ion-icon{
-            color:#fff;
-        }
-        ion-label{
-            margin:0;
-        }
-
-        img{
-            margin-top:8vw;
-            margin-bottom:8vw;
-            margin-left:35%;
-            margin-right:auto;
-            width:30%;
-        }
-    }
-
-    .item-inner{
-        border:none;
+page-login{
+    .login{
+        background-color: #0a1e3f;  
+        background:url("../assets/images/login_bg.jpg");
+    
+        button{
+        height:12vw;
         width:100%;
-        padding:0;
-    }
+        font-size:4.5vw;
+        border-radius: 1vw;
+        }
 
-    form{
         ion-item{
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            ion-icon{
-            color:#000;
-            margin-left:10px !important;
-            }
+            border:none;
+            padding-left:0; 
+            background-color: transparent;
             ion-input{
-            color:#000;
+                color:#fff;
+            }
+            ion-icon{
+                color:#fff;
+            }
+            ion-label{
+                margin:0;
             }
 
+            img{
+                margin-top:8vw;
+                margin-bottom:8vw;
+                margin-left:35%;
+                margin-right:auto;
+                width:30%;
+            }
         }
-        ion-item.top-item{
-            border-top-left-radius: 1vw;
-            border-top-right-radius: 1vw;
+
+        .item-inner{
+            border:none;
+            width:100%;
+            padding:0;
         }
-        ion-item.bottom-item{
-            border-bottom-left-radius: 1vw;
-            border-bottom-right-radius: 1vw;
+
+        form{
+            ion-item{
+                background-color: #fff;
+                border-bottom: 1px solid #ddd;
+                ion-icon{
+                color:#000;
+                margin-left:10px !important;
+                }
+                ion-input{
+                color:#000;
+                }
+
+            }
+            ion-item.top-item{
+                border-top-left-radius: 1vw;
+                border-top-right-radius: 1vw;
+            }
+            ion-item.bottom-item{
+                border-bottom-left-radius: 1vw;
+                border-bottom-right-radius: 1vw;
+            }
         }
-    }
+    }      
 
     .log-item{
         padding-bottom:0;  
@@ -98,7 +100,7 @@
         background-color: transparent;
         border-bottom: none;
         .item-inner{
-            border-bottom: none;
+            border-bottom: 0px !important;
         }
         .input-wrapper{
             background-color: transparent;
@@ -113,13 +115,12 @@
             font-size:4vw;
         }
     }
-}
 
-.pull-left{
-  float:left;
+    .pull-left{
+    float:left;
+    }
+    .pull-right{
+    float:right;
+    }
 }
-.pull-right{
-  float:right;
-}
-
 

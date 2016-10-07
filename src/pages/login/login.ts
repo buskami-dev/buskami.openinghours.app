@@ -25,6 +25,7 @@ export class LoginPage {
     public menu: MenuController,
     public formBuilder: FormBuilder)
   { 
+    console.log('constructor login');
     this.menu.enable(false);
 
       this.loginGroup = formBuilder.group({
