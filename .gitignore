@@ -11,3 +11,4 @@ Thumbs.db
 tsconfig.tmp.json
 .tmp/
 .vscode/
+npm-debug.log.*

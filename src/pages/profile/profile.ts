@@ -26,23 +26,23 @@ export class ProfilePage {
     });
   }
 
-  UpdateFirstName(firstname){
+  UpdateFirstName(firstname) : void{
     this.profileService.UpdateFirstName(firstname)
   }
 
-  UpdateLastName(lastname){
+  UpdateLastName(lastname) : void{
     this.profileService.UpdateLastName(lastname)
   }
 
-  UpdateDOB(birthDate){
+  UpdateDOB(birthDate) : void{
   this.profileService.UpdateDOB(birthDate);
   }
 
-  UpdateGender(gender){
+  UpdateGender(gender): void{
   this.profileService.UpdateGender(gender);
   }
 
-  LogOut(){
+  LogOut() : void{
   this.authDataService.LogoutUser();
   this.app.getRootNav().setRoot(LoginPage);
   }
