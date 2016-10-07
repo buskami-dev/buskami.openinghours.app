@@ -1,6 +1,7 @@
 import { AuthDataService } from './../../providers/authdata.service';
 import { NavController, LoadingController, AlertController, ModalController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { TabsPage } from './../tabs/tabs';
@@ -13,6 +14,7 @@ import { TabsPage } from './../tabs/tabs';
 
 export class LoginPage {
   loader: any;
+  loginGroup:any;
   user = { email: '', password: '' };
 
   constructor(public navCtrl: NavController,
@@ -20,22 +22,40 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public authDataService: AuthDataService,
     public modalCtrl: ModalController,
-    public menu: MenuController,)
+    public menu: MenuController,
+    public formBuilder: FormBuilder)
   { 
     this.menu.enable(false);
+
+      this.loginGroup = formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    }); 
   }
 
   Login() {
-    this.ShowLoading()
 
-    this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
-      this.loader.dismiss();
-      this.menu.enable(true);
-      console.log('going to TabsPage');
-      this.navCtrl.setRoot(TabsPage);
-    }).catch((error) => {
-      this.ShowError(error);
-    });
+    if (this.loginGroup.valid)
+    {
+      this.ShowLoading()
+
+      this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
+        this.loader.dismiss();
+        this.menu.enable(true);
+        console.log('going to TabsPage');
+        this.navCtrl.setRoot(TabsPage);
+      }).catch((error) => {
+        this.ShowError(error);
+      });
+    }
+    else
+    {
+      let prompt = this.alertCtrl.create({
+        subTitle: "Please enter your email and password",
+        buttons: ['OK']
+      });
+      prompt.present();
+    }
 
   }
 

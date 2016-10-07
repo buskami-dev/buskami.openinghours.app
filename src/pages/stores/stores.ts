@@ -4,7 +4,7 @@ import { StoreDetailsPage } from './../store-details/store-details';
 import { StoreCreatePage } from './../store-create/store-create';
 import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , MenuController} from 'ionic-angular';
 import { Store } from '../../models/store.model';
 
 @Component({
@@ -14,13 +14,17 @@ import { Store } from '../../models/store.model';
 export class StoresPage {
   stores : Store[] = [];
 
-  constructor(public navCtrl: NavController, public StoreService: StoreService, public authDataService: AuthDataService) {
+  constructor(public navCtrl: NavController, 
+              public storeService: StoreService, 
+              public authDataService: AuthDataService,
+              public menu : MenuController) {
+    //this.menu.enable(true);
     this.GetStores();
   }
 
 
   GetStores(){
-    this.StoreService.GetList().subscribe(
+    this.storeService.GetList().subscribe(
       store => {
         //console.log(store);
         this.stores.push(store);

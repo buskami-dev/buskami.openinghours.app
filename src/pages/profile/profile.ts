@@ -1,7 +1,7 @@
 import { ProfileService } from './../../providers/profile.service';
 import { AuthDataService } from './../../providers/authdata.service';
 import { Profile } from './../../models/profile.model';
-import { NavController, AlertController } from 'ionic-angular';
+import { App, NavController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { LoginPage } from '../login/login';
  
@@ -14,7 +14,7 @@ export class ProfilePage {
   public profile : Profile = new Profile();
  
   constructor(public nav: NavController, public profileService: ProfileService,
-    public authDataService: AuthDataService, public alertCtrl: AlertController) {
+    public authDataService: AuthDataService, public alertCtrl: AlertController, public app: App) {
  
       this.profileService.GetUserProfile().on('value', (data) => {
       this.userProfile = data.val();
@@ -43,8 +43,7 @@ export class ProfilePage {
   }
 
   LogOut(){
-  this.authDataService.LogoutUser().then(() => {
-    this.nav.setRoot(LoginPage);
-  });
+  this.authDataService.LogoutUser();
+  this.app.getRootNav().setRoot(LoginPage);
   }
 }

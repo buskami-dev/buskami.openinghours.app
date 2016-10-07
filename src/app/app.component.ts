@@ -18,6 +18,8 @@ export class MyApp {
   
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
+  pages : any[];
+
   StoresPage: any = TabsPage;
   aboutPage: any = AboutPage;
 
@@ -26,15 +28,36 @@ export class MyApp {
             public menu: MenuController, 
             public authDataService : AuthDataService) {
     
+    console.log('This is App constructor');
+    
+    this.pages = [
+        {title: "Stores", component: TabsPage},
+        {title: "About", component: AboutPage}
+    ];          
+
     let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {
        if (!user) {
-       this.rootPage = LoginPage;
-         unsubscribe();
+        this.rootPage = LoginPage;
+        console.log('LoginPage!!!')
+        unsubscribe();
        } else  {
-         this.rootPage = TabsPage;
-         unsubscribe();
+        this.menu.enable(true);
+        unsubscribe();
+        this.rootPage = TabsPage;
+        console.log('TabsPage!!!')
+       
        }
     });
+
+    /*firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.rootPage = TabsPage;
+          console.log("I'm here! TabsPage");
+        } else {
+          this.rootPage = LoginPage;
+          console.log("I'm here! LoginPage");
+        }
+      });*/
     
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -45,14 +68,13 @@ export class MyApp {
 
   OpenPage(page): void {
     this.menu.close();
-    this.nav.setRoot(page);
+    this.nav.setRoot(page.component);
   }
 
   Logout(): void {
     this.menu.close();
     this.menu.enable(false);
-    this.authDataService.LogoutUser().then(() => {
+    this.authDataService.LogoutUser();
     this.nav.setRoot(LoginPage);
-  });
   }
 }
