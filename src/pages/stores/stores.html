@@ -15,6 +15,45 @@
 <ion-searchbar (input)="Search($event)" placeholder="Search Store"></ion-searchbar>
 </ion-header>
 <ion-content>
+  <ion-card *ngFor="let store of stores">  
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="assets/images/pcconnection.png">
+        </ion-thumbnail>
+        <h2><b>{{ store.name }}</b></h2>
+        <p>Santa Rosaweg 11</p>
+        <p color="light"><b>&bull; Open Now</b></p>
+      </ion-item>
+    </ion-list>
+    <ion-row no-padding>
+      <ion-col>
+        <a href="tel:{{store.phone}}">
+          <button ion-button clear small color="secondary" icon-left>
+            <ion-icon name='phone-portrait'></ion-icon>
+            Call now
+          </button>
+        </a>
+      </ion-col>      
+      <ion-col>
+        <button ion-button clear small color="secondary" icon-left (click)="Favorite(store)">
+          <ion-icon name='heart' [isActive]="isChecked"></ion-icon>
+          Favorite
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="secondary" icon-left (click)="GoToDetails(store.id)">
+          <ion-icon name='share-alt'></ion-icon>
+          Details
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+
+
+
+<!--
 <ion-list *ngIf="stores">
     <button ion-item *ngFor="let store of stores" (click)="GoToStoreDetails(store.id)">
     <ion-avatar item-left>
@@ -24,4 +63,4 @@
     <ion-icon md="md-arrow-forward"></ion-icon>
   </button>
 </ion-list>
-</ion-content>
+  -->

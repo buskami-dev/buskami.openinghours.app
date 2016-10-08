@@ -31,8 +31,8 @@ export class MyApp {
     console.log('This is App constructor');
     
     this.pages = [
-        {title: "Stores", component: TabsPage},
-        {title: "About", component: AboutPage}
+        {title: "Stores", icon:"time", component: TabsPage},
+        {title: "About", icon: "information-circle", component: AboutPage}
     ];          
 
     let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {

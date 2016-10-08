@@ -12,6 +12,7 @@ import { Store } from '../../models/store.model';
 })
 export class StoresPage {
   stores : Store[] = [];
+  isChecked : boolean = false;
 
   constructor(public navCtrl: NavController, 
               public storeService: StoreService, 
@@ -36,7 +37,14 @@ export class StoresPage {
    
   } 
 
-  GoToStoreDetails(storeId)
+
+  Favorite(store) {
+    console.log(store.id);
+    this.isChecked = !this.isChecked;
+  } 
+
+
+  GoToDetails(storeId)
   {
     console.log(storeId);
     this.navCtrl.push(StoreDetailsPage, {
