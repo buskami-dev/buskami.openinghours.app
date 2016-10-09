@@ -18,7 +18,7 @@ export class ProfilePage {
  
       this.profileService.GetUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-      
+      this.profile.id = data.key;
       this.profile.firstName = this.userProfile.firstname;
       this.profile.lastName = this.userProfile.lastname;
       this.profile.birthDate = this.userProfile.birthDate;     
@@ -26,19 +26,19 @@ export class ProfilePage {
     });
   }
 
-  UpdateFirstName(firstname) : void{
+  SaveFirstName(firstname) : void{
     this.profileService.UpdateFirstName(firstname)
   }
 
-  UpdateLastName(lastname) : void{
+  SaveLastName(lastname) : void{
     this.profileService.UpdateLastName(lastname)
   }
 
-  UpdateDOB(birthDate) : void{
+  SaveBirthDate(birthDate) : void{
   this.profileService.UpdateDOB(birthDate);
   }
 
-  UpdateGender(gender): void{
+  SaveGender(gender): void{
   this.profileService.UpdateGender(gender);
   }
 

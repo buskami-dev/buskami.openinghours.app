@@ -28,7 +28,7 @@ export class MyApp {
             public menu: MenuController, 
             public authDataService : AuthDataService) {
     
-    console.log('This is App constructor');
+    //console.log('This is App constructor');
     
     this.pages = [
         {title: "Stores", icon:"time", component: TabsPage},
@@ -36,16 +36,16 @@ export class MyApp {
     ];          
 
     let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {
-       console.log(user);
+       //console.log(user);
        if (!user) {
         this.rootPage = LoginPage;
-        console.log('LoginPage!!!')
+        //console.log('LoginPage!!!')
         unsubscribe();
        } else  {
         this.menu.enable(true);
         unsubscribe();
         this.rootPage = TabsPage;
-        console.log('TabsPage!!!')
+        //console.log('TabsPage!!!')
        
        }
     });

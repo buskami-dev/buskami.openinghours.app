@@ -16,6 +16,10 @@ export class ProfileService {
  
   }
  
+  GetCurrentUser(){
+    return this.currentUser.uid;
+  }
+  
   GetUserProfile(): any {
     return this.userProfile.child(this.currentUser.uid);
   }

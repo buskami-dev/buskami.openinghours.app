@@ -1,6 +1,7 @@
 import { StoreService } from './../providers/store.service';
 import { ProfileService } from './../providers/profile.service';
 import { AuthDataService } from './../providers/authdata.service';
+import { FavoriteService } from './../providers/favorite.service';
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -66,7 +67,8 @@ export const firebaseConfig = {
     providers: [
     AuthDataService,
     ProfileService,
-    StoreService
+    StoreService,
+    FavoriteService
   ]
 })
 export class AppModule {}

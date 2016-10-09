@@ -25,7 +25,7 @@ export class LoginPage {
     public menu: MenuController,
     public formBuilder: FormBuilder)
   { 
-    console.log('constructor login');
+    //console.log('constructor login');
     this.menu.enable(false);
 
       this.loginGroup = formBuilder.group({
@@ -36,7 +36,7 @@ export class LoginPage {
 
   Login(event) {
     //event.preventDefault();
-    console.log(this.loginGroup.value);
+    //console.log(this.loginGroup.value);
     
     if (this.loginGroup.valid)
     {
@@ -45,7 +45,7 @@ export class LoginPage {
       this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
         this.loader.dismiss();
         this.menu.enable(true);
-        console.log('going to TabsPage');
+        //console.log('going to TabsPage');
         this.navCtrl.setRoot(TabsPage);
       }).catch((error) => {
         this.ShowError(error);

@@ -36,13 +36,13 @@
         </a>
       </ion-col>      
       <ion-col>
-        <button ion-button clear small color="secondary" icon-left (click)="Favorite(store)">
-          <ion-icon name='heart' [isActive]="isChecked"></ion-icon>
+        <button ion-button clear small color="secondary" icon-left (click)="FavoriteStore(store.id)">
+          <ion-icon name='heart-outline'></ion-icon>
           Favorite
         </button>
       </ion-col>
       <ion-col text-right>
-        <button ion-button clear small color="secondary" icon-left (click)="GoToDetails(store.id)">
+        <button ion-button clear small color="secondary" icon-left (click)="GoToStoreDetails(store.id)">
           <ion-icon name='share-alt'></ion-icon>
           Details
         </button>

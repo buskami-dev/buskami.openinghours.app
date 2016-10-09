@@ -1,12 +1,7 @@
 import { IStore } from './../pages/shared/interfaces';
-//import { AngularFire } from 'angularfire2';
-//import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';  
 import { Injectable } from '@angular/core';
 import { Store } from '../models/store.model';
-//import firebase from 'firebase';
-
-
 
 declare let firebase; 
 @Injectable()
@@ -18,6 +13,7 @@ export class StoreService {
   constructor() {
     this.storeList = firebase.database().ref('/stores');
   }
+
   
   Create(store:IStore)
   {
@@ -49,7 +45,6 @@ export class StoreService {
       };
     });
   }
-
   GetDetails(storeId:string) : Store
   {
     this.storeList.child(storeId).on('value', (snapshot) => { this.store = snapshot.val(); });
