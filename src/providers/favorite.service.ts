@@ -11,12 +11,12 @@ export class FavoriteService {
  
  public currentUser: any;
  public userProfile: any;
- public favoriteList: any;
+ public favoritesList: any;
 
   constructor(private profileService : ProfileService) {
     this.currentUser = profileService.GetCurrentUser();
-    this.userProfile = firebase.database().ref('/userProfile');
-    this.favoriteList = firebase.database().ref('/userProfile/' + this.currentUser + '/favorites');
+    this.userProfile = firebase.database().ref('/userProfile/');
+    this.favoritesList = firebase.database().ref('/userProfile/' + this.currentUser + '/favorites');
   }
 
   GetCurrentUser(){
@@ -32,17 +32,30 @@ export class FavoriteService {
   }
 
   IsFavorite(storeId) : any {
-    return this.userProfile.child(this.currentUser  + '/favorites/' + storeId);
+    let isFav = false;
+    this.userProfile.child(this.currentUser  + '/favorites/' + storeId).once('value', snapshot => {
+      console.log(snapshot.val());
+      isFav = snapshot.val() == true;
+      return isFav;
+    });
   }
 
   GetFavorites() : any{
-    return this.userProfile.child(this.currentUser  + '/favorites/').once('value');
+    this.favoritesList.on('value', snapshot => {
+    let favorites = [];
+      snapshot.forEach( snap => {
+        favorites.push({
+          id: snap.key,
+        });
+      });
+      return favorites;
+    });                      
   }
 
   GetList():Observable<Store>
   { 
       return Observable.create(observer => {
-        let listener = this.favoriteList.on('child_added', snapshot => {
+        let listener = this.favoritesList.on('child_added', snapshot => {
         let data = snapshot.val();
         observer.next(new Store(
           snapshot.key,
@@ -57,7 +70,7 @@ export class FavoriteService {
       }, observer.error);
 
       return () => {
-        this.favoriteList.off('child_added', listener);
+        this.favoritesList.off('child_added', listener);
       };
     });
   }

@@ -23,12 +23,7 @@ export class StoresPage {
               public favoriteService : FavoriteService,
               public menu : MenuController) {
     
-
-
     this.GetStores();
-    this.GetFavorites();
-    //this.IsStoreFavorited('KSllqHEGGKnR88Wh0Ed');
-
   }
 
   GetStores(){
@@ -40,25 +35,17 @@ export class StoresPage {
     );
   }
 
-  Search(event) {
-   
-  } 
-
   GetFavorites(){
-    this.favorites =  this.favoriteService.GetFavorites().then((data) =>{
-      console.log(data)
-    });
+    this.favorites = this.favoriteService.GetFavorites();
   }
 
-
   IsStoreFavorited(storeId){
-    this.favoriteService.IsFavorite(storeId).then((data) =>{
-        console.log(data);
-    });
+    console.log('test:' + this.favoriteService.IsFavorite(storeId));
+    return this.favoriteService.IsFavorite(storeId);
   }
 
   FavoriteStore(storeId) {
-    if (this.favoriteService.IsFavorite(storeId))
+    if (!this.IsStoreFavorited(storeId))
     { 
       this.favoriteService.SaveFavorite(storeId).then(() => {
           let toast = this.toastCtrl.create({
@@ -73,7 +60,7 @@ export class StoresPage {
     {
       this.favoriteService.RemoveFavorite(storeId).then(() => {
           let toast = this.toastCtrl.create({
-              message: 'Added to favorites',
+              message: 'Removed from favorites',
               duration: 3000,
               position: 'top'
           });
@@ -95,6 +82,11 @@ export class StoresPage {
   {
     this.navCtrl.push(StoreCreatePage);
   }
+
+
+  Search(event) {
+   
+  } 
 }
 
 
