@@ -1,3 +1,4 @@
+import { ArrayFilterPipe } from './../pages/shared/array-filter.pipe';
 import { StoreService } from './../providers/store.service';
 import { ProfileService } from './../providers/profile.service';
 import { AuthDataService } from './../providers/authdata.service';
@@ -30,7 +31,7 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-  MyApp,
+    MyApp,
     AboutPage,
     FavoritesPage,
     ContactPage,
@@ -42,7 +43,8 @@ export const firebaseConfig = {
     StoreCreatePage,
     StoreDetailsPage,
     StoresPage,
-    TabsPage
+    TabsPage,
+    ArrayFilterPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),

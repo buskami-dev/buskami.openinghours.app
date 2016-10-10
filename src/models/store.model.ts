@@ -1,5 +1,5 @@
 export class Store { 
-
+  isFavorite: boolean
 
   constructor(public id: string,
               public name:string, 
@@ -17,6 +17,7 @@ export class Store {
     this.image = image,
     this.description = description,
     this.url = url,
+    this.isFavorite = false;
     this.openinghours = openinghours
   }
 

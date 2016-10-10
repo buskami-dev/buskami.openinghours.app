@@ -23,12 +23,23 @@ export class StoresPage {
               public favoriteService : FavoriteService,
               public menu : MenuController) {
     
+    this.GetFavorites();
     this.GetStores();
+
+    console.log('constructor');
   }
 
   GetStores(){
     this.storeService.GetList().subscribe(
       store => {
+        this.favorites.forEach(favStore =>{
+          if (store.id == favStore.id)
+          {
+            store.isFavorite = true;
+            this.isFavorite = true;
+          }
+        })
+        //console.log(store);
         this.stores.push(store);
       },
       err => console.error(err)
@@ -36,18 +47,23 @@ export class StoresPage {
   }
 
   GetFavorites(){
-    this.favorites = this.favoriteService.GetFavorites();
+   this.favoriteService.GetFavorites().then((snapshot) => {;
+     snapshot.forEach( snap => {
+        this.favorites.push({id:snap.key});
+      });
+   })
   }
 
-  IsStoreFavorited(storeId){
-    console.log('test:' + this.favoriteService.IsFavorite(storeId));
-    return this.favoriteService.IsFavorite(storeId);
+  IsFavoriteStore(storeId : string): boolean{
+    return this.favoriteService.IsFavorite(storeId).then((snapshot) =>{
+      console.log(snapshot.val());
+    });
   }
 
-  FavoriteStore(storeId) {
-    if (!this.IsStoreFavorited(storeId))
+  ToggleFavorite(store: Store) {
+   if (!store.isFavorite)
     { 
-      this.favoriteService.SaveFavorite(storeId).then(() => {
+      this.favoriteService.SaveFavorite(store.id).then(() => {
           let toast = this.toastCtrl.create({
               message: 'Added to favorites',
               duration: 3000,
@@ -58,7 +74,7 @@ export class StoresPage {
     }
     else
     {
-      this.favoriteService.RemoveFavorite(storeId).then(() => {
+      this.favoriteService.RemoveFavorite(store.id).then(() => {
           let toast = this.toastCtrl.create({
               message: 'Removed from favorites',
               duration: 3000,
@@ -67,6 +83,7 @@ export class StoresPage {
           toast.present();
       });
     }
+    store.isFavorite = !store.isFavorite;
   } 
 
 

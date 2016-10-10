@@ -32,24 +32,12 @@ export class FavoriteService {
   }
 
   IsFavorite(storeId) : any {
-    let isFav = false;
-    this.userProfile.child(this.currentUser  + '/favorites/' + storeId).once('value', snapshot => {
-      console.log(snapshot.val());
-      isFav = snapshot.val() == true;
-      return isFav;
-    });
+    //let isFav = false;
+    return this.userProfile.child(this.currentUser  + '/favorites/' + storeId).once('value');
   }
 
   GetFavorites() : any{
-    this.favoritesList.on('value', snapshot => {
-    let favorites = [];
-      snapshot.forEach( snap => {
-        favorites.push({
-          id: snap.key,
-        });
-      });
-      return favorites;
-    });                      
+    return this.favoritesList.once('value');                      
   }
 
   GetList():Observable<Store>
