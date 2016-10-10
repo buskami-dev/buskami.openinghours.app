@@ -18,7 +18,7 @@ import { StoreCreatePage } from '../pages/store-create/store-create';
 import { StoreDetailsPage } from '../pages/store-details/store-details';
 import { StoresPage } from '../pages/stores/stores';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthMethods, AuthProviders  } from 'angularfire2';
 
 
 export const firebaseConfig = {
@@ -28,6 +28,11 @@ export const firebaseConfig = {
     storageBucket: "buskami-openinghours.appspot.com",
     messagingSenderId: "663873067982"
 };
+
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +53,7 @@ export const firebaseConfig = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
