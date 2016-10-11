@@ -11,7 +11,7 @@ export class StoreService {
  public searchList: any;
 
   constructor() {
-    this.storeList = firebase.database().ref('/stores');
+    this.storeList = firebase.database().ref('/stores'); 
   }
 
   
@@ -45,6 +45,7 @@ export class StoreService {
       };
     });
   }
+
   GetDetails(storeId:string) : Store
   {
     this.storeList.child(storeId).on('value', (snapshot) => { this.store = snapshot.val(); });

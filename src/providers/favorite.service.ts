@@ -32,7 +32,6 @@ export class FavoriteService {
   }
 
   IsFavorite(storeId) : any {
-    //let isFav = false;
     return this.userProfile.child(this.currentUser  + '/favorites/' + storeId).once('value');
   }
 
@@ -40,27 +39,5 @@ export class FavoriteService {
     return this.favoritesList.once('value');                      
   }
 
-  GetList():Observable<Store>
-  { 
-      return Observable.create(observer => {
-        let listener = this.favoritesList.on('child_added', snapshot => {
-        let data = snapshot.val();
-        observer.next(new Store(
-          snapshot.key,
-          data.name,
-          data.maplink,
-          data.phone,
-          data.image,
-          data.description,
-          data.url,
-          data.openinghours
-        )); 
-      }, observer.error);
-
-      return () => {
-        this.favoritesList.off('child_added', listener);
-      };
-    });
-  }
 }
 

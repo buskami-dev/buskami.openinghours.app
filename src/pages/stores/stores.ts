@@ -1,5 +1,4 @@
 import { FavoriteService } from './../../providers/favorite.service';
-import { AuthDataService } from './../../providers/authdata.service';
 import { StoreService } from './../../providers/store.service';
 import { StoreDetailsPage } from './../store-details/store-details';
 import { StoreCreatePage } from './../store-create/store-create';
@@ -14,32 +13,27 @@ import { Store } from '../../models/store.model';
 export class StoresPage {
   stores : Store[] = [];
   favorites : any[] = [];
-  isFavorite: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public toastCtrl : ToastController,
               public storeService: StoreService, 
-              public authDataService: AuthDataService,
               public favoriteService : FavoriteService,
               public menu : MenuController) {
     
     this.GetFavorites();
     this.GetStores();
-
-    console.log('constructor');
   }
 
   GetStores(){
+
     this.storeService.GetList().subscribe(
-      store => {
+      store => {      
         this.favorites.forEach(favStore =>{
           if (store.id == favStore.id)
           {
             store.isFavorite = true;
-            this.isFavorite = true;
           }
         })
-        //console.log(store);
         this.stores.push(store);
       },
       err => console.error(err)
@@ -47,17 +41,11 @@ export class StoresPage {
   }
 
   GetFavorites(){
-   this.favoriteService.GetFavorites().then((snapshot) => {;
+   this.favoriteService.GetFavorites().then((snapshot) => {
      snapshot.forEach( snap => {
         this.favorites.push({id:snap.key});
       });
    })
-  }
-
-  IsFavoriteStore(storeId : string): boolean{
-    return this.favoriteService.IsFavorite(storeId).then((snapshot) =>{
-      console.log(snapshot.val());
-    });
   }
 
   ToggleFavorite(store: Store) {
@@ -89,7 +77,6 @@ export class StoresPage {
 
   GoToStoreDetails(storeId)
   {
-    //console.log(storeId);
     this.navCtrl.push(StoreDetailsPage, {
       storeId: storeId,
     });

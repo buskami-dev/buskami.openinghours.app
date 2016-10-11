@@ -38,8 +38,8 @@ const myFirebaseAuthConfig = {
   declarations: [
     MyApp,
     AboutPage,
-    FavoritesPage,
     ContactPage,
+    FavoritesPage,
     HomePage,
     LoginPage,
     ProfilePage,
@@ -59,8 +59,8 @@ const myFirebaseAuthConfig = {
   entryComponents: [
     MyApp,
     AboutPage,
-    FavoritesPage,
     ContactPage,
+    FavoritesPage,
     HomePage,
     LoginPage,
     ProfilePage,

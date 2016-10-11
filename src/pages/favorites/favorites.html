@@ -1,13 +1,40 @@
-<ion-header>
+<ion-header class="pageFavorites">
   <ion-navbar color="primary">
+    <ion-title>
+      Favorites
+    </ion-title> 
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
-      Favorites
-    </ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-content padding class="favorites">
+<ion-content>
+  <ion-card *ngFor="let fav of favoriteStores">  
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="assets/images/pcconnection.png">
+        </ion-thumbnail>
+        <h2><b>{{ fav.name }}</b></h2>
+        <p>Santa Rosaweg 11</p>
+        <p color="light"><b>&bull; Open Now</b></p>
+      </ion-item>
+    </ion-list>
+    <ion-row no-padding>
+      <ion-col>
+        <a href="tel:{{fav.phone}}">
+          <button ion-button clear small color="secondary" icon-left>
+            <ion-icon name='phone-portrait'></ion-icon>
+            Call now
+          </button>
+        </a>
+      </ion-col>      
+      <ion-col text-right>
+        <button ion-button clear small color="secondary" icon-left (click)="GoToStoreDetails(store.id)">
+          <ion-icon name='share-alt'></ion-icon>
+          Details
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 </ion-content>

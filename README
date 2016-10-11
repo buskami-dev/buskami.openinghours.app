@@ -29,5 +29,10 @@ $ npm install firebase angularfire2 --save
 
 
 
+if problem with permission on Mac when doing changes
+$ sudo chown -R $(whoami) ~/
+
+
+
 
 
