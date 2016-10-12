@@ -1,3 +1,4 @@
+import { Store } from './../../models/store.model';
 import { StoreService } from './../../providers/store.service';
 import { IStore } from './../shared/interfaces';
 import { Component } from '@angular/core';
@@ -9,9 +10,20 @@ import { NavController, LoadingController, AlertController } from 'ionic-angular
 })
 export class StoreCreatePage {
   loader: any;
-  public store: any = {};
-
-  constructor(public navCtrl: NavController, public StoreService: StoreService, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
+  store: Store = {
+    id: "",
+    name: "",
+    address: "",
+    mapLink: "",
+    phone: "",
+    url: "",
+    image: "",
+    description: ""
+  }
+  constructor(public navCtrl: NavController,
+    public StoreService: StoreService,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController) {
   }
 
   CreateStore() {
@@ -20,35 +32,24 @@ export class StoreCreatePage {
     let newStore: IStore = {
       id: null,
       name: this.store.name,
+      address: this.store.address,
       mapLink: "http://www.pccur.com",
       phone: this.store.phone,
       url: this.store.url,
       image: "http://www.inspyro.be/images/small%20logo%20spark%20transparant%20background.png",
       description: "computers, keyboards, mouse, cables",
-      openinghours: [
-        "05.30 - 22:00",
-        "05.30 - 22:00",
-        "05.30 - 22:00",
-        "05.30 - 22:00",
-        "05.30 - 22:00",
-        "06.30 - 22:00",
-        "7.00 - 22.00"
-      ]
     };
 
-
-    this.StoreService.Create(newStore)
-
+    this.StoreService.Create(newStore);
     this.ShowSuccess('Your new store was created!');
   }
 
-
-  ShowLoading() {
+  ShowLoading(): void {
     this.loader = this.loadingCtrl.create({ content: 'Please wait...' });
     this.loader.present();
   }
 
-  ShowSuccess(text) {
+  ShowSuccess(text: string): void {
     this.loader.dismiss().then(() => {
       let prompt = this.alertCtrl.create({
         title: text,
@@ -59,7 +60,7 @@ export class StoreCreatePage {
     });
   }
 
-  ShowError(text) {
+  ShowError(text: string): void {
     setTimeout(() => {
       this.loader.dismiss();
     });

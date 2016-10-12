@@ -5,6 +5,7 @@ export class Profile {
   birthDate: string;
   gender: string;
   favorites:any[];
+  
   constructor(){}
 
   AddFavorite(storeId) : void{

@@ -16,8 +16,6 @@ export class FavoritesPage {
   constructor(public navCtrl: NavController,         
               public storeService: StoreService, 
               public favoriteService : FavoriteService){
-  
-
     this.GetFavoriteStores();
   }
 

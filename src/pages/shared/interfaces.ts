@@ -1,12 +1,13 @@
 export interface IStore {
-  id:string;
+  id: string;
   name: string;
+  address: string;  
   mapLink: string;
   phone: string;
   image: string;
   description: string;
   url: string;
-  openinghours: string[]
+  openinghours?: any[]
 }
 
 export interface ICredentials {

@@ -10,6 +10,10 @@
         <ion-input type="Text" required [(ngModel)]="store.name" name="storeName"></ion-input>
     </ion-item>
     <ion-item>
+        <ion-label>Address</ion-label>
+        <ion-input type="Text" required [(ngModel)]="store.address" name="storePhone"></ion-input>
+    </ion-item>    
+    <ion-item>
         <ion-label>Phone</ion-label>
         <ion-input type="Text" required [(ngModel)]="store.phone" name="storePhone"></ion-input>
     </ion-item>
@@ -19,15 +23,15 @@
     </ion-item>
      <ion-item>
         <ion-label>Description</ion-label>
-        <ion-input type="Text" name="storeDescription"></ion-input>
+        <ion-input type="Text" [(ngModel)]="store.description" name="storeDescription"></ion-input>
     </ion-item>    
      <ion-item>
         <ion-label>Map</ion-label>
-        <ion-input type="Text" name="storeMap"></ion-input>
+        <ion-input type="Text" [(ngModel)]="store.mapLink" name="storeMap"></ion-input>
     </ion-item> 
      <ion-item>
         <ion-label>Image</ion-label>
-        <ion-input type="Text" name="storeImage"></ion-input>
+        <ion-input type="Text" [(ngModel)]="store.image" name="storeImage"></ion-input>
     </ion-item>
      <ion-item>
         <ion-label stacked>Openinghours</ion-label><br/>

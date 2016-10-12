@@ -12,7 +12,7 @@ import { Store } from '../../models/store.model';
 })
 export class StoresPage {
   stores : Store[] = [];
-  favorites : any[] = [];
+  favorites : Object[] = [];
 
   constructor(public navCtrl: NavController, 
               public toastCtrl : ToastController,
@@ -25,7 +25,6 @@ export class StoresPage {
   }
 
   GetStores(){
-
     this.storeService.GetList().subscribe(
       store => {      
         this.favorites.forEach(favStore =>{

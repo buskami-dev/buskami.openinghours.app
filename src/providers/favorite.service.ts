@@ -36,7 +36,20 @@ export class FavoriteService {
   }
 
   GetFavorites() : any{
-    return this.favoritesList.once('value');                      
+    return this.favoritesList.once('value');                   
+  }
+
+
+  GetFavorites2() : any {      
+      return Observable.create(observer => {
+      let listener = this.favoritesList.on('value', snapshot => {
+        observer.next(snapshot);
+      }, observer.error);
+
+      return () => {
+        this.favoritesList.off('value', listener);
+      };
+    });               
   }
 
 }

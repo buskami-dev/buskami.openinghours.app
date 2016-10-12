@@ -24,6 +24,9 @@
         <h2><b>{{ store.name }}</b></h2>
         <p>Santa Rosaweg 11</p>
         <p color="light"><b>&bull; Open Now</b></p>
+        <button ion-button clear small color="secondary" item-right (click)="GoToStoreDetails(store.id)">
+          View
+        </button>
       </ion-item>
     </ion-list>
     <ion-row no-padding>
@@ -35,19 +38,21 @@
           </button>
         </a>
       </ion-col>      
-      <ion-col>
+      <ion-col text-right>
         <button ion-button clear small color="secondary" icon-left (click)="ToggleFavorite(store)">
           <ion-icon *ngIf="!store.isFavorite" name='heart-outline'></ion-icon>
           <ion-icon *ngIf="store.isFavorite" name='heart'></ion-icon>
           Favorite
         </button>
       </ion-col>
+      <!--
       <ion-col text-right>
         <button ion-button clear small color="secondary" icon-left (click)="GoToStoreDetails(store.id)">
           <ion-icon name='share-alt'></ion-icon>
           Details
-        </button>
+        </ßbutton>
       </ion-col>
+      -->
     </ion-row>
   </ion-card>
 </ion-content>
@@ -62,4 +67,4 @@
     <ion-icon md="md-arrow-forward"></ion-icon>
   </button>
 </ion-list>
-  -->
+ß-->

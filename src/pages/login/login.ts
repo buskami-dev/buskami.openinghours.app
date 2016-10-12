@@ -1,3 +1,4 @@
+import { Credentials } from './../../models/credentials.model';
 import { AuthDataService } from './../../providers/authdata.service';
 import { NavController, LoadingController, AlertController, ModalController, MenuController } from 'ionic-angular';
 import { Component } from '@angular/core';
@@ -15,7 +16,7 @@ import { TabsPage } from './../tabs/tabs';
 export class LoginPage {
   loader: any;
   loginGroup:any;
-  user = { email: '', password: '' };
+  credentials : Credentials = { email: '', password: '' };
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -25,7 +26,6 @@ export class LoginPage {
     public menu: MenuController,
     public formBuilder: FormBuilder)
   { 
-    //console.log('constructor login');
     this.menu.enable(false);
 
       this.loginGroup = formBuilder.group({
@@ -34,18 +34,14 @@ export class LoginPage {
     }); 
   }
 
-  Login(event) {
-    //event.preventDefault();
-    //console.log(this.loginGroup.value);
-    
+  Login(event) {    
     if (this.loginGroup.valid)
     {
       this.ShowLoading()
 
-      this.authDataService.LoginUser(this.user.email, this.user.password).then((authData) => {
+      this.authDataService.LoginUser(this.credentials.email, this.credentials.password).then((authData) => {
         this.loader.dismiss();
         this.menu.enable(true);
-        //console.log('going to TabsPage');
         this.navCtrl.setRoot(TabsPage);
       }).catch((error) => {
         this.ShowError(error);
@@ -61,35 +57,9 @@ export class LoginPage {
     }
   }
 
-  LoginFacebook() {
-    this.ShowLoading();
-    this.authDataService.LoginUserWithFacebook().then((result) => {
-      console.log(result.facebook.accessToken);
-      this.loader.dismiss();
-      this.navCtrl.setRoot(TabsPage);
-    }).catch((error) => {
-      this.ShowError(error);
-    });
-
-  }
-
-  LoginGoogle() {
-    this.ShowLoading();
-    this.authDataService.LoginUserWithGoogle().then((result) => {
-      console.log(result.user);
-      console.log(result.credential);
-      this.loader.dismiss();
-      this.navCtrl.setRoot(TabsPage);
-    }).catch((error) => {
-      this.ShowError(error);
-    });
-  }
-
-
   GoToSignup() {
     //let modal = this.modalCtrl.create(SignupPage);
     //modal.present();
-
     this.navCtrl.push(SignupPage);
   }
 

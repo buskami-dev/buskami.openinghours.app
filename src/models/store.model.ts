@@ -1,14 +1,23 @@
 export class Store { 
-  isFavorite: boolean
-
-  constructor(public id: string,
-              public name:string, 
-              public mapLink:string, 
-              public phone:string, 
-              public image:string,
-              public description:string,
-              public url:string,
-              public openinghours:any[])
+  id: string;
+  name:string;
+  address:string;
+  mapLink:string; 
+  phone:string;
+  image:string;
+  description:string;
+  url:string;
+  openinghours?:any[];
+  isFavorite?: boolean;
+  
+  constructor(id: string,
+              name:string, 
+              address:string,
+              mapLink:string, 
+              phone:string, 
+              image:string,
+              description:string,
+              url:string)
   {
     this.id = id;
     this.name = name; 
@@ -16,11 +25,10 @@ export class Store {
     this.phone = phone,
     this.image = image,
     this.description = description,
-    this.url = url,
-    this.isFavorite = false;
-    this.openinghours = openinghours
+    this.url = url
   }
 
+/*
   addOpeningHours(days : number[], openTime: string, closeTime:string, startBreak: string, endBreak:string): void 
   {
     this.openinghours.push({
@@ -33,4 +41,5 @@ export class Store {
       }]
     });
   }
+  */
 }
