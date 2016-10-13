@@ -5,21 +5,22 @@ import { Injectable } from '@angular/core';
 import { Store } from '../models/store.model';
 
 declare let firebase; 
+
 @Injectable()
 export class FavoriteService {
  public store:Store;
  
- public currentUser: any;
+ public currentUser: string;
  public userProfile: any;
- public favoritesList: any;
+ public favorites: any;
 
   constructor(private profileService : ProfileService) {
     this.currentUser = profileService.GetCurrentUser();
     this.userProfile = firebase.database().ref('/userProfile/');
-    this.favoritesList = firebase.database().ref('/userProfile/' + this.currentUser + '/favorites');
+    this.favorites = firebase.database().ref('/userProfile/' + this.currentUser + '/favorites');
   }
 
-  GetCurrentUser(){
+  GetCurrentUser() : string {
       return this.currentUser;
   }
 
@@ -36,18 +37,17 @@ export class FavoriteService {
   }
 
   GetFavorites() : any{
-    return this.favoritesList.once('value');                   
+    return this.favorites.once('value');                   
   }
-
 
   GetFavorites2() : any {      
       return Observable.create(observer => {
-      let listener = this.favoritesList.on('value', snapshot => {
+      let listener = this.favorites.on('value', snapshot => {
         observer.next(snapshot);
       }, observer.error);
 
       return () => {
-        this.favoritesList.off('value', listener);
+        this.favorites.off('value', listener);
       };
     });               
   }

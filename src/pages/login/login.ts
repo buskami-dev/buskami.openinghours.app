@@ -16,7 +16,7 @@ import { TabsPage } from './../tabs/tabs';
 export class LoginPage {
   loader: any;
   loginGroup:any;
-  credentials : Credentials = { email: '', password: '' };
+  credentials : Credentials = { email: "", password: "" };
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,

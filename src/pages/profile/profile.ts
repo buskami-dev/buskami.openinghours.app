@@ -4,46 +4,47 @@ import { Profile } from './../../models/profile.model';
 import { App, NavController, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { LoginPage } from '../login/login';
- 
+
 @Component({
-  selector : 'page-profile',
+  selector: 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
   public userProfile: any;
-  public profile : Profile = new Profile();
- 
+  public profile: Profile = new Profile();
+
   constructor(public nav: NavController, public profileService: ProfileService,
     public authDataService: AuthDataService, public alertCtrl: AlertController, public app: App) {
- 
-      this.profileService.GetUserProfile().on('value', (data) => {
+
+    this.profileService.GetUserProfile().on('value', (data) => {
       this.userProfile = data.val();
       this.profile.id = data.key;
       this.profile.firstName = this.userProfile.firstname;
       this.profile.lastName = this.userProfile.lastname;
-      this.profile.birthDate = this.userProfile.birthDate;     
+      this.profile.birthDate = this.userProfile.birthDate;
       this.profile.gender = this.userProfile.gender;
     });
   }
 
-  SaveFirstName(firstname) : void{
+  SaveFirstName(firstname): void {
     this.profileService.UpdateFirstName(firstname)
   }
 
-  SaveLastName(lastname) : void{
+  SaveLastName(lastname): void {
     this.profileService.UpdateLastName(lastname)
   }
 
-  SaveBirthDate(birthDate) : void{
-  this.profileService.UpdateDOB(birthDate);
+  SaveBirthDate(birthDate): void {
+    this.profileService.UpdateBirthDate(birthDate);
   }
 
-  SaveGender(gender): void{
-  this.profileService.UpdateGender(gender);
+  SaveGender(gender): void {
+    this.profileService.UpdateGender(gender);
   }
 
-  LogOut() : void{
-  this.authDataService.LogoutUser();
-  this.app.getRootNav().setRoot(LoginPage);
+  LogOut(): void {
+    this.authDataService.LogoutUser().then(() => {
+      this.app.getRootNav().setRoot(LoginPage);
+    });
   }
 }

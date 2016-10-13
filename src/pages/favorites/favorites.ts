@@ -7,31 +7,29 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector:'page-favorites',
+  selector: 'page-favorites',
   templateUrl: 'favorites.html'
 })
 export class FavoritesPage {
-  favoriteStores : Store[] = [];
+  favoriteStores: Store[] = [];
 
-  constructor(public navCtrl: NavController,         
-              public storeService: StoreService, 
-              public favoriteService : FavoriteService){
+  constructor(public navCtrl: NavController,
+    public storeService: StoreService,
+    public favoriteService: FavoriteService) {
     this.GetFavoriteStores();
   }
 
-
-   GetFavoriteStores()
-   {
-      this.favoriteService.GetFavorites().then((snapshot) => {;
-      snapshot.forEach( snap => {
-          let storeId = snap.key;
-          this.favoriteStores.push(this.storeService.GetDetails(storeId));
-        });
+  GetFavoriteStores() {
+    this.favoriteService.GetFavorites().then((snapshot) => {
+      ;
+      snapshot.forEach(snap => {
+        let storeId = snap.key;
+        this.favoriteStores.push(this.storeService.GetDetails(storeId));
+      });
     })
   }
 
-  GoToStoreDetails(storeId)
-  {
+  GoToStoreDetails(storeId) {
     this.navCtrl.push(StoreDetailsPage, {
       storeId: storeId,
     });

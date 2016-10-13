@@ -1,3 +1,4 @@
+import { Credentials } from './../../models/credentials.model';
 import { AuthDataService } from './../../providers/authdata.service';
 import { TabsPage } from './../tabs/tabs';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
@@ -8,28 +9,27 @@ import { Component } from '@angular/core';
 })
 export class SignupPage {
   loader: any;
-  user = {email: '', password: '', confpass: ''};
+  credentails : Credentials = { email: "", password: "", confirmPassword: ""};
 
-  constructor(public navCtrl: NavController, 
-              public alertCtrl: AlertController, 
-              public loadingCtrl: LoadingController, 
-              public authDataService : AuthDataService) 
-              {}
+  constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public authDataService: AuthDataService)
+  { }
 
   public CreateLogin() {
-    if (this.user.password !== this.user.confpass){
-        let alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: 'Passwords must be matched.',
-            buttons: ['OK']
-        });
-        alert.present();
-        return;
+    if (this.credentails.password !== this.credentails.confirmPassword) {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        subTitle: 'Passwords must be matched.',
+        buttons: ['OK']
+      });
+      alert.present();
+      return;
     }
-    else
-    {
+    else {
       this.ShowLoading()
-      this.authDataService.SignupUser(this.user.email, this.user.password).then((authData) => {
+      this.authDataService.SignupUser(this.credentails.email, this.credentails.password).then((authData) => {
         this.loader.dismiss().then(() => {
           let prompt = this.alertCtrl.create({
             title: 'Success',
@@ -37,7 +37,7 @@ export class SignupPage {
             buttons: ['OK']
           });
           prompt.present();
-        }).then(() =>{this.navCtrl.setRoot(TabsPage)});
+        }).then(() => { this.navCtrl.setRoot(TabsPage) });
       }).catch((error) => {
         this.ShowError(error);
       });
@@ -45,7 +45,7 @@ export class SignupPage {
   }
 
   ShowLoading() {
-    this.loader = this.loadingCtrl.create({content: 'Please wait...'});
+    this.loader = this.loadingCtrl.create({ content: 'Please wait...' });
     this.loader.present();
   }
 

@@ -1,29 +1,28 @@
 import { IStore } from './../pages/shared/interfaces';
+import { Store } from '../models/store.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Store } from '../models/store.model';
 
 declare let firebase;
 
 @Injectable()
 export class StoreService {
   public store: Store;
-  public storeList: any;
+  public stores: any = firebase.database().ref('/stores');
 
   constructor() {
-    this.storeList = firebase.database().ref('/stores');
   }
 
   Create(store: IStore): void {
-    this.storeList.push(store
+    this.stores.push(store
     ).then(newStore => {
-      this.storeList.child(newStore.key).child('id').set(newStore.key);
+      this.stores.child(newStore.key).child('id').set(newStore.key);
     });
   }
 
   GetList(): Observable<Store> {
     return Observable.create(observer => {
-      let listener = this.storeList.on('child_added', snapshot => {
+      let listener = this.stores.on('child_added', snapshot => {
         let data = snapshot.val();
         observer.next(new Store(
           snapshot.key,
@@ -38,13 +37,13 @@ export class StoreService {
       }, observer.error);
 
       return () => {
-        this.storeList.off('child_added', listener);
+        this.stores.off('child_added', listener);
       };
     });
   }
 
   GetDetails(storeId: string): Store {
-    this.storeList.child(storeId).on('value', (snapshot) => { this.store = snapshot.val(); });
+    this.stores.child(storeId).on('value', (snapshot) => { this.store = snapshot.val(); });
     return this.store;
   }
 }

@@ -15,51 +15,35 @@ declare let firebase: any;
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  pages : any[];
+  pages: any[];
 
   StoresPage: any = TabsPage;
   aboutPage: any = AboutPage;
 
-  constructor(platform: Platform, 
-            af: AngularFire, 
-            public menu: MenuController, 
-            public authDataService : AuthDataService) {
-    
-    //console.log('This is App constructor');
-    
-    this.pages = [
-        {title: "Stores", icon:"time", component: TabsPage},
-        {title: "About", icon: "information-circle", component: AboutPage}
-    ];          
+  constructor(platform: Platform,
+    af: AngularFire,
+    public menu: MenuController,
+    public authDataService: AuthDataService) {
 
-    let unsubscribe = firebase.auth().onAuthStateChanged( (user) => {
-       //console.log(user);
-       if (!user) {
+    this.pages = [
+      { title: "Stores", icon: "time", component: TabsPage },
+      { title: "About", icon: "information-circle", component: AboutPage }
+    ];
+
+    let unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
         this.rootPage = LoginPage;
-        //console.log('LoginPage!!!')
         unsubscribe();
-       } else  {
+      } else {
         this.menu.enable(true);
         unsubscribe();
         this.rootPage = TabsPage;
-        //console.log('TabsPage!!!')
-       
-       }
+      }
     });
 
-    /*firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.rootPage = TabsPage;
-          console.log("I'm here! TabsPage");
-        } else {
-          this.rootPage = LoginPage;
-          console.log("I'm here! LoginPage");
-        }
-      });*/
-    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -75,7 +59,8 @@ export class MyApp {
   Logout(): void {
     this.menu.close();
     this.menu.enable(false);
-    this.authDataService.LogoutUser();
-    this.nav.setRoot(LoginPage);
+    this.authDataService.LogoutUser().then(() => {
+      this.nav.setRoot(LoginPage);
+    });
   }
-}
+} 

@@ -5,12 +5,10 @@ declare let firebase;
 
 @Injectable()
 export class AuthDataService {
-  public fireAuth: any;
-  public userProfile: any;
+  public fireAuth: any = firebase.auth();
+  public userProfile: any = firebase.database().ref('/userProfile');
 
   constructor(private platform: Platform) {
-    this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('/userProfile');
   }
 
   LoginUser(email: string, password: string): any {
