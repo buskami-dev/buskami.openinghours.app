@@ -1,15 +1,11 @@
 import { ProfileService } from './profile.service';
-import { IStore } from './../pages/shared/interfaces';
 import { Observable } from 'rxjs/Observable';  
 import { Injectable } from '@angular/core';
-import { Store } from '../models/store.model';
 
 declare let firebase; 
 
 @Injectable()
 export class FavoriteService {
- public store:Store;
- 
  public currentUser: string;
  public userProfile: any;
  public favorites: any;

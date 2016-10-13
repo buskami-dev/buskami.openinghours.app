@@ -7,9 +7,7 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { FavoritesPage } from '../pages/favorites/favorites';
-import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
@@ -38,9 +36,7 @@ const myFirebaseAuthConfig = {
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
     FavoritesPage,
-    HomePage,
     LoginPage,
     ProfilePage,
     ResetPasswordPage,
@@ -59,9 +55,7 @@ const myFirebaseAuthConfig = {
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
     FavoritesPage,
-    HomePage,
     LoginPage,
     ProfilePage,
     ResetPasswordPage,

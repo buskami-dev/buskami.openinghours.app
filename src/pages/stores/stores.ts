@@ -11,8 +11,11 @@ import { Store } from '../../models/store.model';
   templateUrl: 'stores.html'
 })
 export class StoresPage {
-  stores: Store[] = [];
+  stores: Store[];
   favorites: any[] = [];
+  searchTerm: string = "";
+  storesList: any;
+
 
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -20,11 +23,18 @@ export class StoresPage {
     public favoriteService: FavoriteService,
     public menu: MenuController) {
 
-    this.GetFavorites();
-    this.GetStores();
+    //this.GetStores();
   }
 
+  ionViewDidLoad() {
+    this.SearchStore();
+  }
+
+
   GetStores() {
+    this.GetFavorites();
+
+    this.stores = [];
     this.storeService.GetList().subscribe(
       store => {
         this.favorites.forEach(favStore => {
@@ -34,7 +44,7 @@ export class StoresPage {
         })
         this.stores.push(store);
       },
-      err => console.error(err)
+      err => console.error("error GetStores:" + err)
     );
   }
 
@@ -81,9 +91,20 @@ export class StoresPage {
     this.navCtrl.push(StoreCreatePage);
   }
 
-
-  Search(event) {
-
+  SearchStore() {
+    console.log(this.searchTerm);
+    if (this.searchTerm != "")
+    {
+      console.log('searching');
+      this.stores = this.stores.filter((item) => {
+        return item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+      });
+    }
+    else
+    {
+      console.log('get all');
+      this.GetStores();
+    }
   }
 }
 
