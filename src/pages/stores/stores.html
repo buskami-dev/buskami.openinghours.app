@@ -12,7 +12,7 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="SearchStore()"></ion-searchbar>
+<ion-searchbar [(ngModel)]="searchTerm" (ionInput)="SetFilteredStores()"></ion-searchbar>
 </ion-header>
 <ion-content>
   <ion-card *ngFor="let store of stores">  

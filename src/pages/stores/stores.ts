@@ -22,12 +22,10 @@ export class StoresPage {
     public storeService: StoreService,
     public favoriteService: FavoriteService,
     public menu: MenuController) {
-
-    //this.GetStores();
   }
 
   ionViewDidLoad() {
-    this.SearchStore();
+    this.SetFilteredStores();
   }
 
 
@@ -91,7 +89,7 @@ export class StoresPage {
     this.navCtrl.push(StoreCreatePage);
   }
 
-  SearchStore() {
+  SetFilteredStores() {
     console.log(this.searchTerm);
     if (this.searchTerm != "")
     {
