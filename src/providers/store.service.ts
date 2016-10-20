@@ -2,8 +2,7 @@ import { IStore } from './../pages/shared/interfaces';
 import { Store } from '../models/store.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-
-declare let firebase;
+import firebase from 'firebase';
 
 @Injectable()
 export class StoreService {

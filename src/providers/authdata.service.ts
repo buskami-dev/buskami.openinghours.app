@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-
-declare let firebase;
+import firebase from 'firebase';
 
 @Injectable()
 export class AuthDataService {
-  public fireAuth: any = firebase.auth();
-  public userProfile: any = firebase.database().ref('/userProfile');
+  public fireAuth: any;
+  public userProfile: any;
 
   constructor(private platform: Platform) {
+    this.fireAuth = firebase.auth(); 
+    this.userProfile = firebase.database().ref('/userProfile');
   }
 
   LoginUser(email: string, password: string): any {

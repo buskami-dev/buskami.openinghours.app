@@ -2,7 +2,7 @@ import { ProfileService } from './profile.service';
 import { Observable } from 'rxjs/Observable';  
 import { Injectable } from '@angular/core';
 
-declare let firebase; 
+import firebase from 'firebase';
 
 @Injectable()
 export class FavoriteService {
