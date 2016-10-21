@@ -25,7 +25,6 @@ Open your terminal (you should already be in the project folder) and install the
 
 run first thing:
 $ npm install
-$ npm install firebase angularfire2 --save
 
 
 
