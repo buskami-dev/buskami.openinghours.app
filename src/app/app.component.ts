@@ -30,21 +30,21 @@ export class MyApp {
     ];
 
     const firebaseConfig = {
-        apiKey: "AIzaSyAZwVbcX0hSBasAmfYG7qgcfV7mD-EJRyI",
-        authDomain: "buskami-openinghours.firebaseapp.com",
-        databaseURL: "https://buskami-openinghours.firebaseio.com",
-        storageBucket: "buskami-openinghours.appspot.com",
-        messagingSenderId: "663873067982"
+      apiKey: "AIzaSyAZwVbcX0hSBasAmfYG7qgcfV7mD-EJRyI",
+      authDomain: "buskami-openinghours.firebaseapp.com",
+      databaseURL: "https://buskami-openinghours.firebaseio.com",
+      storageBucket: "buskami-openinghours.appspot.com",
+      messagingSenderId: "663873067982"
     };
 
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth().onAuthStateChanged( user => {
+    firebase.auth().onAuthStateChanged(user => {
       if (!user) {
         this.rootPage = LoginPage;
         console.log("There's not a logged in user!");
       }
-      else{
+      else {
         this.rootPage = TabsPage;
       }
     });
