@@ -11,18 +11,19 @@ import { LoginPage } from '../login/login';
 })
 export class ProfilePage {
   public userProfile: any;
-  public profile: Profile = new Profile();
+  public profile: Profile = {id:"", email:"", firstName:"", lastName:"", birthDate: "", gender: ""};
 
   constructor(public nav: NavController, public profileService: ProfileService,
     public authDataService: AuthDataService, public alertCtrl: AlertController, public app: App) {
+  }
 
-    this.profileService.GetUserProfile().on('value', (data) => {
-      this.userProfile = data.val();
+  ionViewDidLoad() {
+      this.profileService.GetUserProfile().on('value', (data) => {
       this.profile.id = data.key;
-      this.profile.firstName = this.userProfile.firstname;
-      this.profile.lastName = this.userProfile.lastname;
-      this.profile.birthDate = this.userProfile.birthDate;
-      this.profile.gender = this.userProfile.gender;
+      this.profile.firstName = data.val().firstname;
+      this.profile.lastName = data.val().lastname;
+      this.profile.birthDate = data.val().birthDate;
+      this.profile.gender = data.val().gender;
     });
   }
 

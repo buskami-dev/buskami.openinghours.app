@@ -22,9 +22,12 @@ export class StoresPage {
     public storeService: StoreService,
     public favoriteService: FavoriteService,
     public menu: MenuController) {
+
+      console.log('constructor stores');
   }
 
   ionViewDidLoad() {
+    console.log('ionviewdidload');
     this.SetFilteredStores();
   }
 
@@ -40,6 +43,7 @@ export class StoresPage {
             store.isFavorite = true;
           }
         })
+        console.log(store);
         this.stores.push(store);
       },
       err => console.error("error GetStores:" + err)

@@ -1,8 +1,10 @@
+import { Profile } from './../../.tmp/models/profile.model';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 
 @Injectable()
 export class ProfileService {
+  profile = Profile;
   userProfile: any = firebase.database().ref('/userProfile'); 
   currentUser: any = firebase.auth().currentUser; 
 

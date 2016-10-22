@@ -6,8 +6,6 @@ import { AboutPage } from './../pages/about/about';
 import { LoginPage } from './../pages/login/login';
 import { TabsPage } from './../pages/tabs/tabs';
 
-import { AuthDataService } from './../providers/authdata.service';
-
 import firebase from 'firebase';
 
 @Component({
@@ -21,8 +19,7 @@ export class MyApp {
   aboutPage: any = AboutPage;
 
   constructor(platform: Platform,
-    public menu: MenuController,
-    public authDataService: AuthDataService) {
+    public menu: MenuController) {
 
     this.pages = [
       { title: "Stores", icon: "time", component: TabsPage },
@@ -39,13 +36,14 @@ export class MyApp {
 
     firebase.initializeApp(firebaseConfig);
 
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        this.rootPage = LoginPage;
-        console.log("There's not a logged in user!");
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('tabs:' + user)
+         this.nav.setRoot(TabsPage);
       }
-      else {
-        this.rootPage = TabsPage;
+      else{
+         console.log('login:' + user)
+        this.nav.setRoot(LoginPage);
       }
     });
 
@@ -57,6 +55,7 @@ export class MyApp {
     });
   }
 
+
   OpenPage(page): void {
     this.menu.close();
     this.nav.setRoot(page.component);
@@ -65,8 +64,9 @@ export class MyApp {
   Logout(): void {
     this.menu.close();
     this.menu.enable(false);
-    this.authDataService.LogoutUser().then(() => {
+    firebase.auth().signOut().then(() => {
       this.nav.setRoot(LoginPage);
     });
   }
+  
 } 
