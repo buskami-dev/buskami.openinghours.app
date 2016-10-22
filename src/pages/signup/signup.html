@@ -7,15 +7,15 @@
   <form (ngSubmit)="signupForm.form.valid && CreateLogin()" #signupForm="ngForm">
     <ion-item class="top-item"> 
       <ion-icon item-left name="ios-mail-outline"></ion-icon>
-      <ion-input type="email" name="email" [(ngModel)]="user.email" placeholder="email" required></ion-input>
+      <ion-input type="email" name="email" [(ngModel)]="credentials.email" placeholder="email" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon item-left name="ios-lock-outline"></ion-icon>
-      <ion-input type="password" name="password" [(ngModel)]="user.password" placeholder="password" required></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="credentials.password" placeholder="password" required></ion-input>
     </ion-item>
     <ion-item class="bottom-item">
       <ion-icon item-left name="ios-lock-outline"></ion-icon>
-      <ion-input type="password" name="password" [(ngModel)]="user.confpass" placeholder="confirm password" required></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="credentials.confirmPassword" placeholder="confirm password" required></ion-input>
     </ion-item> 
     <div padding class="btn">
     <button ion-button block type="submit">
