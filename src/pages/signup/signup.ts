@@ -1,4 +1,5 @@
 import { Credentials } from './../../models/credentials.model';
+
 import { AuthDataService } from './../../providers/authdata.service';
 import { TabsPage } from './../tabs/tabs';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 })
 export class SignupPage {
   loader: any;
-  credentails : Credentials = { email: "", password: "", confirmPassword: ""};
+  credentials : Credentials = { email: "", password: "", confirmPassword: ""};
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -18,7 +19,7 @@ export class SignupPage {
   { }
 
   public CreateLogin() {
-    if (this.credentails.password !== this.credentails.confirmPassword) {
+    if (this.credentials.password !== this.credentials.confirmPassword) {
       let alert = this.alertCtrl.create({
         title: 'Error',
         subTitle: 'Passwords must be matched.',
@@ -29,7 +30,7 @@ export class SignupPage {
     }
     else {
       this.ShowLoading()
-      this.authDataService.SignupUser(this.credentails.email, this.credentails.password).then((authData) => {
+      this.authDataService.SignupUser(this.credentials.email, this.credentials.password).then((authData) => {
         this.loader.dismiss().then(() => {
           let prompt = this.alertCtrl.create({
             title: 'Success',
