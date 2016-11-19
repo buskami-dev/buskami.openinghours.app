@@ -15,7 +15,7 @@
 <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="SetFilteredStores()"></ion-searchbar>
 </ion-header>
 <ion-content>
-  <ion-card *ngFor="let store of stores">  
+  <ion-card *ngFor="let store of storesList">  
     <ion-list>
       <ion-item>
         <ion-thumbnail item-left>
@@ -45,14 +45,13 @@
           Favorite
         </button>
       </ion-col>
-      <!--
+      
       <ion-col text-right>
-        <button ion-button clear small color="secondary" icon-left (click)="GoToStoreDetails(store.id)">
+       <!-- <button ion-button clear small color="secondary" icon-left (click)="GoToStoreDetails(store.id)">
           <ion-icon name='share-alt'></ion-icon>
           Details
-        </ßbutton>
+        </button>-->
       </ion-col>
-      -->
     </ion-row>
   </ion-card>
 </ion-content>

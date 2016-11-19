@@ -15,6 +15,7 @@ export class StoresPage {
   favorites: any[] = [];
   searchTerm: string = "";
   storesList: any;
+  loadedStoresList: any;
 
 
   constructor(public navCtrl: NavController,
@@ -23,17 +24,18 @@ export class StoresPage {
     public favoriteService: FavoriteService,
     public menu: MenuController) {
 
-      console.log('constructor stores');
+    console.log('constructor stores');
+    
   }
 
   ionViewDidLoad() {
     console.log('ionviewdidload');
-    this.SetFilteredStores();
+    this.GetStoreList();
   }
 
 
   GetStores() {
-    this.GetFavorites();
+    this.GetStoreFavorites();
 
     this.stores = [];
     this.storeService.GetList().subscribe(
@@ -50,10 +52,29 @@ export class StoresPage {
     );
   }
 
-  GetFavorites() {
+  GetStoreList() {
+    this.GetStoreFavorites();
+
+    this.storeService.GetStoreList().then(snapshot => {
+      this.stores = [];
+      snapshot.forEach(store => {
+        store = store.val();
+        this.favorites.forEach(favStore => {
+          if (store.id == favStore.id) {
+            store.isFavorite = true;
+          }
+        })
+        this.stores.push(store);
+      });
+      this.storesList = this.stores;
+      this.loadedStoresList = this.stores;
+    });
+  }
+
+  GetStoreFavorites() {
     this.favoriteService.GetFavorites().then((snapshot) => {
-      snapshot.forEach(snap => {
-        this.favorites.push({ id: snap.key });
+      snapshot.forEach(favStore => {
+        this.favorites.push({ id: favStore.key });
       });
     })
   }
@@ -82,6 +103,10 @@ export class StoresPage {
     store.isFavorite = !store.isFavorite;
   }
 
+  InitializeStores() {
+    this.storesList = this.loadedStoresList;
+  }
+
 
   GoToStoreDetails(storeId) {
     this.navCtrl.push(StoreDetailsPage, {
@@ -94,19 +119,17 @@ export class StoresPage {
   }
 
   SetFilteredStores() {
-    console.log(this.searchTerm);
-    if (this.searchTerm != "")
-    {
-      console.log('searching');
-      this.stores = this.stores.filter((item) => {
-        return item.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
-      });
+    this.InitializeStores();
+
+    if (!this.searchTerm) {
+      return;
     }
-    else
-    {
-      console.log('get all');
-      this.GetStores();
-    }
+
+    this.storesList = this.storesList.filter((store) => {
+      if (store.name && this.searchTerm) {
+        return store.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+      }
+    });
   }
 }
 

@@ -10,7 +10,7 @@ $ npm uninstall -g ionic
 $ npm cache clean
 $ npm install -g ionic 
 
-$ ionic info
+$ ionic infoß
 
 
 Make sure you have typescript and cordova installed
@@ -30,6 +30,17 @@ $ npm install
 
 if problem with permission on Mac when doing changes
 $ sudo chown -R $(whoami) ~/
+
+
+In order to deßßg on an actual IOS device you first need to run the following command;
+
+This will install the iOS simulator and ios-deploy will allow you to deploy the application directly when it's attached via USB
+$ npm install -g ios-sim ios-deploy --unsafe-perm=true
+$ ionic run ios
+$ ionic run ios --device
+
+
+
 
 
 

@@ -8,14 +8,24 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'store-details.html'
 })
 export class StoreDetailsPage {
-store: Store;
+store: Store = {id:"", address:"", mapLink: "", image:"", description:"",  name:"", phone:"", url:""};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public StoreService: StoreService) {
-    this.GetStoreDetails();
+    this.GetStoreDetails(this.navParams.get('storeId'));
   }
 
-  GetStoreDetails(){
-      this.store = this.StoreService.GetDetails(this.navParams.get('storeId'));
+    ionViewDidLoad() {
+   // console.log('ionviewdidload');
+    //this.GetStoreDetails();
+  }
+
+  GetStoreDetails(storeId){
+      this.StoreService.GetDetails(storeId).on('value', (data) => {
+      this.store.id = data.key;
+      this.store.name = data.val().name;
+      this.store.phone = data.val().phone;
+      this.store.url = data.val().url;
+    });
   }
 
 }

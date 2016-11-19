@@ -43,7 +43,7 @@ export class MyApp {
       }
       else{
          console.log('login:' + user)
-        this.nav.setRoot(LoginPage);
+         this.rootPage = LoginPage;
       }
     });
 

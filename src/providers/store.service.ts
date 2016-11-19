@@ -22,6 +22,7 @@ export class StoreService {
   GetList(): Observable<Store> {
     return Observable.create(observer => {
       let listener = this.stores.on('child_added', snapshot => {
+        console.log(snapshot.val);
         let data = snapshot.val();
         observer.next(new Store(
           snapshot.key,
@@ -41,9 +42,13 @@ export class StoreService {
     });
   }
 
-  GetDetails(storeId: string): Store {
-    this.stores.child(storeId).on('value', (snapshot) => { this.store = snapshot.val(); });
-    return this.store;
+  GetStoreList():any
+  {
+    return this.stores.once('value');
+  }
+
+  GetDetails(storeId: string): any {
+    return this.stores.child(storeId);
   }
 }
 

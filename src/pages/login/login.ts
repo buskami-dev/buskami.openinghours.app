@@ -7,6 +7,8 @@ import { SignupPage } from '../signup/signup';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { TabsPage } from './../tabs/tabs';
 
+import { Facebook } from 'ionic-native';
+
 
 @Component({
   selector: 'page-login',
@@ -14,9 +16,10 @@ import { TabsPage } from './../tabs/tabs';
 })
 
 export class LoginPage {
+  submitAttempt :boolean = false;
   loader: any;
-  loginGroup:any;
-  credentials : Credentials = { email: "", password: "" };
+  loginGroup: any;
+  credentials: Credentials = { email: "", password: "" };
 
   constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -24,19 +27,25 @@ export class LoginPage {
     public authDataService: AuthDataService,
     public modalCtrl: ModalController,
     public menu: MenuController,
-    public formBuilder: FormBuilder)
-  { 
+    public formBuilder: FormBuilder) {
     this.menu.enable(false);
 
-      this.loginGroup = formBuilder.group({
+    this.loginGroup = formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
-    }); 
+    });
   }
 
-  Login(event) {    
-    if (this.loginGroup.valid)
-    {
+  elementChanged(input)
+  {
+    let field = input.inputControl.name;
+    this[field + "Changed"] = true;
+  }
+
+  Login(event) {
+    this.submitAttempt = true;
+
+    if (this.loginGroup.valid) {
       this.ShowLoading()
 
       this.authDataService.LoginUser(this.credentials.email, this.credentials.password).then((authData) => {
@@ -47,14 +56,29 @@ export class LoginPage {
         this.ShowError(error);
       });
     }
-    else
-    {
+    else {
       let prompt = this.alertCtrl.create({
         subTitle: "Please enter your email and password",
         buttons: ['OK']
       });
       prompt.present();
     }
+  }
+
+  LoginFacebook() {
+    Facebook.login(['email']).then((response) => {
+      let facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+
+      firebase.auth().signInWithCredential(facebookCredential)
+        .then((success) => {
+          console.log("Firebase success: " + JSON.stringify(success));
+          //this.userProfile = success;
+        })
+        .catch((error) => {
+          console.log("Firebase failure: " + JSON.stringify(error));
+        });
+
+    }).catch((error) => { console.log(error) });
   }
 
   GoToSignup() {

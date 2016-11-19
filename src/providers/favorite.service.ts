@@ -28,15 +28,11 @@ export class FavoriteService {
     return this.userProfile.child(this.currentUser + '/favorites/' + storeId).remove();
   }
 
-  IsFavorite(storeId) : any {
-    return this.userProfile.child(this.currentUser  + '/favorites/' + storeId).once('value');
-  }
-
-  GetFavorites() : any{
+  GetFavorites() : any {
     return this.favorites.once('value');                   
   }
 
-  GetFavorites2() : any {      
+   GetFavorites2() : any {      
       return Observable.create(observer => {
       let listener = this.favorites.on('value', snapshot => {
         observer.next(snapshot);
@@ -47,6 +43,5 @@ export class FavoriteService {
       };
     });               
   }
-
 }
 
