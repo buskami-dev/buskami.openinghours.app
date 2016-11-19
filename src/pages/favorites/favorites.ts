@@ -23,14 +23,15 @@ export class FavoritesPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionviewdidload favorites');
-    this.GetFavorites2();
+  ionViewDidEnter() { //will always go to the database
+    console.log('ionviewdidenter favorites');
+    this.GetFavorites();
   }
 
 
   GetFavorites() {
     this.favoriteService.GetFavorites().then((snapshot) => {
+      this.favoriteStores = [];
       snapshot.forEach(snap => {
         let storeId = snap.key;
         this.store = this.loadedStoresList.filter(x => x.id == storeId)[0];
@@ -42,7 +43,7 @@ export class FavoritesPage {
   GetFavorites2() {
     this.favoriteService.GetFavorites2().subscribe(
       snapshot => {
-            this.favoriteStores = [];
+        this.favoriteStores = [];
         snapshot.forEach(snap => {
           console.log(snap.key);
           this.store = this.loadedStoresList.filter(x => x.id == snap.key)[0];
