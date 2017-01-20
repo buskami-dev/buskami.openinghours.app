@@ -29,6 +29,7 @@ export class LoginPage {
     public menu: MenuController,
     public formBuilder: FormBuilder) {
     this.menu.enable(false);
+    console.log("test");
 
     this.loginGroup = formBuilder.group({
       email: ['', Validators.required],

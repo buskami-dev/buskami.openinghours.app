@@ -1,4 +1,4 @@
-import { Profile } from './../../.tmp/models/profile.model';
+import { Profile } from '../models/profile.model';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 
